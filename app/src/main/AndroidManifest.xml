@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".UI.CheckActivity" />
         <activity android:name=".UI.EnterActivity" />
+        <activity android:name=".UI.CreateTagActivity" />
+        <activity android:name=".UI.TagsActivity" />
     </application>
 
 </manifest>
