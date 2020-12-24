@@ -1,5 +1,6 @@
 package com.example.myapp.DB.local;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Query;
 
@@ -34,5 +35,9 @@ interface RecordDAO {
     @Query("select * from record where District in (:districts)")
     List<Record> getRecordsByDistricts(String[] districts);
 
+    @Query("select * from record where Tag = :tag")
+    List<Record> getRecordsByTag(String tag);
 
+    @Query("select * from record where Tag in (:tags)")
+    List<Record> getRecordsByTags(String[] tags);
 }
