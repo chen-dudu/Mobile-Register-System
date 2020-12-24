@@ -35,18 +35,23 @@ public class Record {
     @NonNull
     public String detail = "";
 
+    @ColumnInfo(name = "description")
+    @NonNull
+    public String description = "";
+
 //    @ForeignKey(Tag.class)
     @ColumnInfo(name = "Tag")
     @NonNull
     public String tag = "";
 
     public Record(@NonNull String province, @NonNull String city, @NonNull String district,
-                  @NonNull String road, @NonNull String detail, @NonNull String tag) {
+                  @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag) {
         this.province = province;
         this.city = city;
         this.district = district;
         this.road = road;
         this.detail = detail;
+        this.description = description;
         this.tag = tag;
     }
 }
