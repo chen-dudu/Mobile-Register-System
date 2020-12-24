@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.MainActivity">
+
+    <Button
+        android:id="@+id/enter_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="录入信息"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/check_data"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="100dp"
+        android:textSize="20sp"
+        android:onClick="onClickEnter"
+        />
+
+    <Button
+        android:id="@+id/check_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查看已录入信息"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/enter_data"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="65dp"
+        android:textSize="20sp"
+        android:onClick="onClickCheck"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
