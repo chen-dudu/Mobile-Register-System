@@ -24,7 +24,7 @@ public class EnterActivity extends AppCompatActivity {
         items.add("标签 1");
         items.add("标签 2");
         items.add("标签 3");
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.tag_list_item, items);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.tag_menu_item, items);
         AutoCompleteTextView menu = (AutoCompleteTextView) findViewById(R.id.tag_list_drop_down);
         menu.setAdapter(adapter);
     }
