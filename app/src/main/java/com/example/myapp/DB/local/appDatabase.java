@@ -6,10 +6,15 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @Database(entities = {Record.class, Tag.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
     public abstract TagDao tagDao();
     public abstract RecordDAO recordDAO();
+
+    public static final ExecutorService dbExecutor = Executors.newFixedThreadPool(4);
 
     private static appDatabase instance = null;
 
