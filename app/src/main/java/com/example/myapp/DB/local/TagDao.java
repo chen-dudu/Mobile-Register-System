@@ -1,5 +1,6 @@
 package com.example.myapp.DB.local;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,13 +13,13 @@ import java.util.List;
 interface TagDao {
 
     @Query("select * from tag")
-    List<Tag> getAllTags();
+    LiveData<List<Tag>> getAllTags();
 
     @Query("select * from tag where tag = :tag")
-    Tag getTag(String tag);
+    LiveData<Tag> getTag(String tag);
 
     @Query("select * from tag where tag in (:tags)")
-    List<Tag> getTags(String[] tags);
+    LiveData<List<Tag>> getTags(String[] tags);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void addTag(Tag tag);
