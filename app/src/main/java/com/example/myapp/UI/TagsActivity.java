@@ -11,12 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
+import com.example.myapp.Util.TagsViewModelFactory;
+import com.example.myapp.ViewModel.TagsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +31,20 @@ public class TagsActivity extends AppCompatActivity {
     protected RecyclerView rview;
     protected TagAdapter adapter;
 
+    private TagsViewModel viewModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tags);
 
-        // fake data for testing
-        List<Tag> d = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            d.add(new Tag("标签 " + i, null));
-        }
+        viewModel = new ViewModelProvider(this, new TagsViewModelFactory(this.getApplication())).get(TagsViewModel.class);
+        viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
+            @Override
+            public void onChanged(List<Tag> tags) {
+                adapter.setData(tags);
+            }
+        });
 
         rview = findViewById(R.id.tags_recyclerview);
         rview.setHasFixedSize(true);
@@ -44,7 +52,7 @@ public class TagsActivity extends AppCompatActivity {
         manager = new LinearLayoutManager(this);
         rview.setLayoutManager(manager);
 
-        adapter = new TagAdapter(d);
+        adapter = new TagAdapter();
         rview.setAdapter(adapter);
 
         DividerItemDecoration divider = new DividerItemDecoration(rview.getContext(), manager.getOrientation());
@@ -71,7 +79,6 @@ public class TagsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-//                System.out.println(">>>");
                 Context c = view.getContext();
                 Intent i = new Intent(c, TagDetailActivity.class);
                 i.putExtra("tagName", this.name);
@@ -91,8 +98,8 @@ public class TagsActivity extends AppCompatActivity {
             }
         }
 
-        public TagAdapter(List<Tag> dataset) {
-            this.dataset = dataset;
+        public TagAdapter() {
+            this.dataset = new ArrayList<>();
         }
 
         @NonNull
@@ -118,6 +125,11 @@ public class TagsActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return dataset.size();
+        }
+
+        public void setData(List<Tag> newData) {
+            dataset = newData;
+            notifyDataSetChanged();
         }
     }
 }
