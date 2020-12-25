@@ -32,7 +32,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:endIconMode="clear_text"
-        app:helperText="名字是标签在系统里的唯一标识，必填，不可重复">
+        app:helperText="名字是标签在系统里的唯一标识，必填，不可重复，创建后不可更改。">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
