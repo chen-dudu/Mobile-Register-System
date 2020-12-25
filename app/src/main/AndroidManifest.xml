@@ -21,6 +21,7 @@
         <activity android:name=".UI.CreateTagActivity" />
         <activity android:name=".UI.TagsActivity" />
         <activity android:name=".UI.TagDetailActivity" />
+        <activity android:name=".UI.NewDescriptionActivity" />
     </application>
 
 </manifest>
