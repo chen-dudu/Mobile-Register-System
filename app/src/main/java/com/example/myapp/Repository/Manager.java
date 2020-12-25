@@ -23,21 +23,21 @@ public class Manager {
         recordDAO = db.recordDAO();
     }
 
-    LiveData<List<Tag>> getAllTags() {
+    public LiveData<List<Tag>> getAllTags() {
         return tagDao.getAllTags();
     }
 
-    LiveData<Tag> getTag(String name) {
-        return tagDao.getTag(name);
+    public LiveData<Tag> getTag(Tag tag) {
+        return tagDao.getTag(tag.name);
     }
 
-    void addTag(Tag tag) {
+    public void addTag(Tag tag) {
         appDatabase.dbExecutor.execute(() -> {
             tagDao.addTag(tag);
         });
     }
 
-    void deleteTag(Tag tag) {
+    public void deleteTag(Tag tag) {
         appDatabase.dbExecutor.execute(() -> {
             tagDao.deleteTag(tag);
         });
