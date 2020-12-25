@@ -54,7 +54,7 @@ public class TagsActivity extends AppCompatActivity {
 
         private List<Tag> dataset;
 
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             private TextView tagName;
             private TextView tagDescription;
 
@@ -62,6 +62,12 @@ public class TagsActivity extends AppCompatActivity {
                 super(view);
                 tagName = view.findViewById(R.id.tag_name);
                 tagDescription = view.findViewById(R.id.tag_description);
+                view.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View view) {
+                System.out.println(">>>");
             }
 
             public TextView getTagName() {
