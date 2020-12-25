@@ -1,6 +1,9 @@
 package com.example.myapp.DB.local;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -16,4 +19,10 @@ interface TagDao {
 
     @Query("select * from tag where tag in (:tags)")
     List<Tag> getTags(String[] tags);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void addTag(Tag tag);
+
+    @Delete
+    void deleteTag(Tag tag);
 }
