@@ -7,7 +7,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-interface RecordDAO {
+public interface RecordDAO {
     @Query("select * from record")
     List<Record> getAllRecords();
 

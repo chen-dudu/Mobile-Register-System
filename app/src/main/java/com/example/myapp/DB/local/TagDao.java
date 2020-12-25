@@ -10,7 +10,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-interface TagDao {
+public interface TagDao {
 
     @Query("select * from tag")
     LiveData<List<Tag>> getAllTags();
