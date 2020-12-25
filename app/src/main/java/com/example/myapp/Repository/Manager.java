@@ -27,8 +27,8 @@ public class Manager {
         return tagDao.getAllTags();
     }
 
-    public LiveData<Tag> getTag(Tag tag) {
-        return tagDao.getTag(tag.name);
+    public LiveData<Tag> getTag(String tagName) {
+        return tagDao.getTag(tagName);
     }
 
     public void addTag(Tag tag) {
