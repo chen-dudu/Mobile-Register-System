@@ -12,12 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
 
-class TagDetailActivity extends AppCompatActivity {
+public class TagDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_detail);
+
+        Intent i = getIntent();
+        // TODO: use tag name primary key to retrieve tag from DB
+        String selectedTag = i.getStringExtra("tagName");
 
         // fake object, to be replaced with DB data
         // TODO: retrieve data from DB
@@ -26,7 +30,7 @@ class TagDetailActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.tag_detail_name);
         TextView description = findViewById(R.id.tag_detail_description);
 
-        name.setText(t.name);
+        name.setText(selectedTag);
         description.setText(t.description);
     }
 

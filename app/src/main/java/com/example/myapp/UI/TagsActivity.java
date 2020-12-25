@@ -1,5 +1,7 @@
 package com.example.myapp.UI;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +60,8 @@ public class TagsActivity extends AppCompatActivity {
             private TextView tagName;
             private TextView tagDescription;
 
+            private String name;
+
             public ViewHolder(View view) {
                 super(view);
                 tagName = view.findViewById(R.id.tag_name);
@@ -67,7 +71,11 @@ public class TagsActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                System.out.println(">>>");
+//                System.out.println(">>>");
+                Context c = view.getContext();
+                Intent i = new Intent(c, TagDetailActivity.class);
+                i.putExtra("tagName", this.name);
+                c.startActivity(i);
             }
 
             public TextView getTagName() {
@@ -76,6 +84,10 @@ public class TagsActivity extends AppCompatActivity {
 
             public TextView getTagDescription() {
                 return tagDescription;
+            }
+
+            public void setName(String name) {
+                this.name = name;
             }
         }
 
@@ -94,6 +106,7 @@ public class TagsActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Tag t = dataset.get(position);
             holder.getTagName().setText(t.name);
+            holder.setName(t.name);
             String description = t.description;
             if (description == null) {
                 description = "无描述";
