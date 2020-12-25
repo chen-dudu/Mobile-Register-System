@@ -26,4 +26,7 @@ public interface TagDao {
 
     @Delete
     void deleteTag(Tag tag);
+
+    @Query("delete from tag")
+    void deleteAll();
 }
