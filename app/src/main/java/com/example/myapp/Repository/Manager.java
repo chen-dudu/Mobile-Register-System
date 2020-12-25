@@ -37,6 +37,12 @@ public class Manager {
         });
     }
 
+    public void updateDescription(Tag tag) {
+        appDatabase.dbExecutor.execute(() -> {
+            tagDao.updateDescription(tag);
+        });
+    }
+
     public void deleteTag(Tag tag) {
         appDatabase.dbExecutor.execute(() -> {
             tagDao.deleteTag(tag);
