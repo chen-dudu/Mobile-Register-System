@@ -20,6 +20,7 @@
         <activity android:name=".UI.EnterActivity" />
         <activity android:name=".UI.CreateTagActivity" />
         <activity android:name=".UI.TagsActivity" />
+        <activity android:name=".UI.TagDetailActivity" />
     </application>
 
 </manifest>
