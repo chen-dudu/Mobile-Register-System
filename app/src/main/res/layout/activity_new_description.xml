@@ -34,12 +34,12 @@
             android:layout_weight="1.5"/>
 
         <Button
-            android:id="@+id/new_description_confirm_button"
+            android:id="@+id/new_description_cancel_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="确认"
-            android:onClick="onClickNewDescriptionConfirmButton"/>
+            android:text="返回"
+            android:onClick="onClickNewDescriptionCancelButton"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -47,12 +47,12 @@
             android:layout_weight="1.5"/>
 
         <Button
-            android:id="@+id/new_description_cancel_button"
+            android:id="@+id/new_description_confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="返回"
-            android:onClick="onClickNewDescriptionCancelButton"/>
+            android:text="确认"
+            android:onClick="onClickNewDescriptionConfirmButton"/>
 
         <TextView
             android:layout_width="match_parent"
