@@ -13,13 +13,13 @@ import java.util.List;
 @Dao
 public interface TagDao {
 
-    @Query("select * from tag")
+    @Query("select * from tag order by `Tag name`")
     LiveData<List<Tag>> getAllTags();
 
-    @Query("select * from tag where tag = :tag")
+    @Query("select * from tag where `Tag name` = :tag")
     LiveData<Tag> getTag(String tag);
 
-    @Query("select * from tag where tag in (:tags)")
+    @Query("select * from tag where `Tag name` in (:tags)")
     LiveData<List<Tag>> getTags(String[] tags);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
