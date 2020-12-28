@@ -29,8 +29,7 @@ import java.util.List;
 
 public class EnterActivity extends AppCompatActivity {
 
-    private TagsViewModel tagsViewModel;
-    private EnterViewModel enterViewModel;
+    private EnterViewModel viewModel;
     private List<String> optionItems = new ArrayList<>();
 
     private TextInputLayout provinceLayout;
@@ -53,8 +52,7 @@ public class EnterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
 
-        enterViewModel = new ViewModelProvider(this, new EnterViewModeFactory(this.getApplication())).get(EnterViewModel.class);
-        tagsViewModel = new ViewModelProvider(this, new TagsViewModelFactory(this.getApplication())).get(TagsViewModel.class);
+        viewModel = new ViewModelProvider(this, new EnterViewModeFactory(this.getApplication())).get(EnterViewModel.class);
 
         provinceLayout = findViewById(R.id.create_record_province_layout);
         provinceText = findViewById(R.id.create_record_province);
@@ -74,7 +72,7 @@ public class EnterActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.tag_menu_item, optionItems);
         tags.setAdapter(adapter);
 
-        tagsViewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
+        viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
                 optionItems.clear();
@@ -216,7 +214,7 @@ public class EnterActivity extends AppCompatActivity {
 
         if (checkPass) {
             System.out.println("checking passed");
-            enterViewModel.addRecord(new Record(province, city, district, road, detail, description, tag));
+            viewModel.addRecord(new Record(province, city, district, road, detail, description, tag));
             Context c = view.getContext();
             Intent i = new Intent(c, MainActivity.class);
             startActivity(i);
