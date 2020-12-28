@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Tag {
     @PrimaryKey
-    @ColumnInfo(name = "Tag")
+    @ColumnInfo(name = "Tag name")
     @NonNull
     public String name;
 
