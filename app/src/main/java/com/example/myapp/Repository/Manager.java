@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.RecordDAO;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.DB.local.TagDao;
@@ -47,5 +48,21 @@ public class Manager {
         appDatabase.dbExecutor.execute(() -> {
             tagDao.deleteTag(tag);
         });
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+
+    public void addRecord(Record record) {
+        appDatabase.dbExecutor.execute(() -> {
+            recordDAO.addRecord(record);
+        });
+    }
+
+    public LiveData<List<Record>> getAllRecords() {
+        return recordDAO.getAllRecords();
+    }
+
+    public LiveData<List<Record>> getRecordsByTag(String tagName) {
+        return recordDAO.getRecordsByTag(tagName);
     }
 }
