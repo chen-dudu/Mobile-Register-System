@@ -45,8 +45,15 @@ public abstract class appDatabase extends RoomDatabase {
                 TagDao tagDao = instance.tagDao();
                 tagDao.deleteAll();
 
+                // mock tag data
                 tagDao.addTag(new Tag("标签A", "描述A"));
                 tagDao.addTag(new Tag("标签B", "描述B"));
+
+                RecordDAO recordDAO = instance.recordDAO();
+                recordDAO.deleteAll();
+
+                // mock record data
+                recordDAO.addRecord(new Record("广西", "北海", "海城区", "北部湾西路", "1号", "测试数据", "标签A"));
             });
         }
     };
