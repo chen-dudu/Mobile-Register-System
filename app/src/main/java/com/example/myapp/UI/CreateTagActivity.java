@@ -1,5 +1,7 @@
 package com.example.myapp.UI;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -62,8 +64,10 @@ public class CreateTagActivity extends AppCompatActivity {
                 des = null;
             }
             Tag newTag = new Tag(name, des);
-            System.out.println(">>> the new tag to be added: " + newTag);
             viewModel.addTag(newTag);
+            Context c = view.getContext();
+            Intent i = new Intent(c, MainActivity.class);
+            startActivity(i);
         }
     }
 
