@@ -109,9 +109,10 @@ public class CheckDisplayActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-//                Context c = v.getContext();
-//                Intent i = new Intent(i, );
-                System.out.println(">>>>> click");
+                Context c = v.getContext();
+                Intent i = new Intent(c, RecordDetailActivity.class);
+                i.putExtra("id", this.id);
+                c.startActivity(i);
             }
 
             public TextView getAddress() {
