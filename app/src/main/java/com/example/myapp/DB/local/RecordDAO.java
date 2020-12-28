@@ -49,8 +49,8 @@ public interface RecordDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void addRecord(Record record);
 
-//    @Update
-//    void update
+    @Update
+    void update(Record record);
 
     @Delete
     void deleteRecord(Record record);
