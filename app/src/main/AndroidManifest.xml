@@ -22,6 +22,8 @@
         <activity android:name=".UI.TagsActivity" />
         <activity android:name=".UI.TagDetailActivity" />
         <activity android:name=".UI.NewDescriptionActivity" />
+        <activity android:name=".UI.CheckByTagChooseActivity" />
+        <activity android:name=".UI.CheckDisplayActivity" />
     </application>
 
 </manifest>
