@@ -76,4 +76,10 @@ public class Manager {
             recordDAO.update(record);
         });
     }
+
+    public void deleteRecord(Record record) {
+        appDatabase.dbExecutor.execute(() -> {
+            recordDAO.deleteRecord(record);
+        });
+    }
 }
