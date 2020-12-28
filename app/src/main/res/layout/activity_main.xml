@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".UI.MainActivity">
 
-
     <TextView
         android:id="@+id/greeting"
         android:layout_width="match_parent"
@@ -20,64 +19,134 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/enter_data"/>
 
-    <Button
+    <LinearLayout
         android:id="@+id/enter_data"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="录入信息"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/greeting"
-        app:layout_constraintBottom_toBottomOf="@id/check_data"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="100dp"
-        android:textSize="20sp"
-        android:onClick="onClickEnter"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/check_data">
 
-    <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="录入信息"
+            android:paddingVertical="20dp"
+            android:textSize="20sp"
+            android:onClick="onClickEnter"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/check_data"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查看已录入信息"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/create_tag"
-        app:layout_constraintTop_toTopOf="@id/enter_data"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="65dp"
-        android:textSize="20sp"
-        android:onClick="onClickCheck"
-        />
+        app:layout_constraintTop_toTopOf="@id/enter_data">
 
-    <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查看已录入信息"
+            android:paddingVertical="20dp"
+            android:textSize="20sp"
+            android:onClick="onClickCheck"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/create_tag"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="创建新标签"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tags"
-        app:layout_constraintTop_toBottomOf="@id/check_data"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="85dp"
-        android:textSize="20sp"
-        android:onClick="onClickCreateTag"
-        />
+        app:layout_constraintTop_toBottomOf="@id/check_data">
 
-    <Button
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="创建新标签"
+            android:paddingVertical="20dp"
+            android:textSize="20sp"
+            android:onClick="onClickCreateTag"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/tags"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查看所有标签"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/create_tag"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="75dp"
-        android:textSize="20sp"
-        android:onClick="onClickTags"
-        />
+        app:layout_constraintTop_toBottomOf="@id/create_tag">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查看所有标签"
+            android:paddingVertical="20dp"
+            android:textSize="20sp"
+            android:onClick="onClickTags"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
