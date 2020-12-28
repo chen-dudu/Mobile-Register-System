@@ -3,6 +3,7 @@ package com.example.myapp.Repository;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.RecordDAO;
@@ -64,5 +65,15 @@ public class Manager {
 
     public LiveData<List<Record>> getRecordsByTag(String tagName) {
         return recordDAO.getRecordsByTag(tagName);
+    }
+
+    public LiveData<Record> getRecordById(int id) {
+        return recordDAO.getRecordById(id);
+    }
+
+    public void update(Record record) {
+        appDatabase.dbExecutor.execute(() -> {
+            recordDAO.update(record);
+        });
     }
 }
