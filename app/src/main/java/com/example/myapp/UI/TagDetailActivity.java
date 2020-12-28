@@ -39,7 +39,12 @@ public class TagDetailActivity extends AppCompatActivity {
                 if (tag != null) {
                     t = tag;
                     name.setText(tag.name);
-                    description.setText(tag.description);
+                    if (tag.description == null) {
+                        description.setText("无描述");
+                    }
+                    else {
+                        description.setText(tag.description);
+                    }
                 }
             }
         });
