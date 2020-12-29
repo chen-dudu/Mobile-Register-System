@@ -53,7 +53,7 @@ public class CheckDisplayActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_SHORT;
                         Toast t = Toast.makeText(c, "未找到结果。", duration);
                         t.show();
-                        finish();
+//                        finish();
                     }
                     else {
                         adapter.setData(records);
@@ -70,7 +70,7 @@ public class CheckDisplayActivity extends AppCompatActivity {
                         int duration = Toast.LENGTH_SHORT;
                         Toast t = Toast.makeText(c, "未找到结果。", duration);
                         t.show();
-                        finish();
+//                        finish();
                     }
                     else {
                         adapter.setData(records);
