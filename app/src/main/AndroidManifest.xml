@@ -25,6 +25,7 @@
         <activity android:name=".UI.CheckByTagChooseActivity" />
         <activity android:name=".UI.CheckDisplayActivity" />
         <activity android:name=".UI.RecordDetailActivity" />
+        <activity android:name=".UI.RecordUpdateActivity" />
     </application>
 
 </manifest>
