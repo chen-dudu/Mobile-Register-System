@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +61,9 @@ public class TagDetailActivity extends AppCompatActivity {
     public void onClickTagDetailDelete(View view) {
         viewModel.deleteTag(t);
         Context c = view.getContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast t = Toast.makeText(c, "标签删除成功", duration);
+        t.show();
         Intent i = new Intent(c, MainActivity.class);
         startActivity(i);
     }
