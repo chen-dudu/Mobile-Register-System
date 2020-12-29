@@ -55,7 +55,10 @@ public class RecordDetailActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(">>>>> update record");
+                Context c = v.getContext();
+                Intent i = new Intent(c, RecordUpdateActivity.class);
+                i.putExtra("id", r.id);
+                startActivity(i);
             }
         });
 
