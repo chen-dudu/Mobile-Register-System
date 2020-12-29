@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,6 +67,9 @@ public class CreateTagActivity extends AppCompatActivity {
             Tag newTag = new Tag(name, des);
             viewModel.addTag(newTag);
             Context c = view.getContext();
+            int duration = Toast.LENGTH_SHORT;
+            Toast t = Toast.makeText(c, "标签创建成功", duration);
+            t.show();
             Intent i = new Intent(c, MainActivity.class);
             startActivity(i);
         }
