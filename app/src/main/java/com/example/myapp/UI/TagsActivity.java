@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +43,15 @@ public class TagsActivity extends AppCompatActivity {
         viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
-                adapter.setData(tags);
+                if (tags.size() == 0) {
+                    Context c = getApplication();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast t = Toast.makeText(c, "未找到结果。", duration);
+                    t.show();
+                }
+                else {
+                    adapter.setData(tags);
+                }
             }
         });
 
