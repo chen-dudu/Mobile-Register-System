@@ -46,14 +46,14 @@ public abstract class appDatabase extends RoomDatabase {
                 tagDao.deleteAll();
 
                 // mock tag data
-                tagDao.addTag(new Tag("用户满意度", "这个标签用于用户满意度相关的数据记录"));
-                tagDao.addTag(new Tag("信号覆盖强度", "这个标签用于信号强度相关的数据记录"));
+                tagDao.addTag(new Tag("用户满意度调查", "这个标签用于用户满意度相关的数据记录"));
+                tagDao.addTag(new Tag("信号覆盖强度调查", "这个标签用于信号强度相关的数据记录"));
 
                 RecordDAO recordDAO = instance.recordDAO();
                 recordDAO.deleteAll();
 
                 // mock record data
-                recordDAO.addRecord(new Record("广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "标签A"));
+                recordDAO.addRecord(new Record("广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "信号覆盖强度调查"));
             });
         }
     };
