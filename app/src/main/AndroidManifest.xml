@@ -31,6 +31,7 @@
         <activity android:name=".UI.RecordDetailActivity" />
         <activity android:name=".UI.RecordUpdateActivity" />
         <activity android:name=".UI.ExportActivity" />
+        <activity android:name=".UI.ExportChooseTagActivity" />
     </application>
 
 </manifest>
