@@ -27,7 +27,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/export_ways"
-        app:layout_constraintBottom_toBottomOf="@id/export_all_tags">
+        app:layout_constraintBottom_toTopOf="@id/export_record_by_tag">
 
         <TextView
             android:layout_width="match_parent"
@@ -52,46 +52,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/export_all_tags"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/export_all_records"
-        app:layout_constraintBottom_toBottomOf="@id/export_record_by_tag">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
-
-        <Button
-            android:id="@+id/export_all_tags_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="导出所有标签"
-            android:paddingVertical="20dp"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/export_record_by_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/export_all_tags"
-        app:layout_constraintBottom_toTopOf="@id/export_back">
+        app:layout_constraintTop_toBottomOf="@id/export_all_records"
+        app:layout_constraintBottom_toTopOf="@id/export_all_tags">
 
         <TextView
             android:layout_width="match_parent"
@@ -116,13 +84,45 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/export_back"
+        android:id="@+id/export_all_tags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/export_record_by_tag"
+        app:layout_constraintBottom_toTopOf="@id/export_back">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:id="@+id/export_all_tags_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="导出所有标签"
+            android:paddingVertical="20dp"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/export_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/export_all_tags"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
