@@ -1,5 +1,7 @@
 package com.example.myapp.UI;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -64,9 +66,9 @@ public class ExportActivity extends AppCompatActivity {
         recordByTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Context c = v.getContext();
-//                Intent i = new Intent(c, );
-//                startActivity(i);
+                Context c = v.getContext();
+                Intent i = new Intent(c, ExportChooseTagActivity.class);
+                startActivity(i);
             }
         });
 
