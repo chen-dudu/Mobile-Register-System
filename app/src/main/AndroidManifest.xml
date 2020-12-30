@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapp">
 
+    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,6 +30,7 @@
         <activity android:name=".UI.CheckDisplayActivity" />
         <activity android:name=".UI.RecordDetailActivity" />
         <activity android:name=".UI.RecordUpdateActivity" />
+        <activity android:name=".UI.ExportActivity" />
     </application>
 
 </manifest>
