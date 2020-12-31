@@ -69,8 +69,9 @@ public class TagDetailActivity extends AppCompatActivity {
     }
 
     public void onClickTagDetailHome(View view) {
-        Context c = view.getContext();
-        Intent i = new Intent(c, MainActivity.class);
-        startActivity(i);
+//        Context c = view.getContext();
+//        Intent i = new Intent(c, MainActivity.class);
+//        startActivity(i);
+        finish();
     }
 }

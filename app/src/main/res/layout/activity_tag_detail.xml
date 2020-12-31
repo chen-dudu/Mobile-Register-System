@@ -131,7 +131,7 @@
             android:id="@+id/tag_detail_button_home"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="返回主页"
+            android:text="返回"
             android:textSize="20sp"
             android:onClick="onClickTagDetailHome"
             android:layout_weight="1"/>
