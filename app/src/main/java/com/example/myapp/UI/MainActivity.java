@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
+import cn.bmob.v3.Bmob;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_EXPORT = 1;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Bmob.initialize(this, "82326b7d373f04180abfe46ece1c3de4");
     }
 
     @Override
