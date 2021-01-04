@@ -3,23 +3,15 @@ package com.example.myapp.Repository;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.RecordDAO;
 import com.example.myapp.DB.local.Tag;
-import com.example.myapp.DB.local.TagCloud;
 import com.example.myapp.DB.local.TagDao;
 import com.example.myapp.DB.local.appDatabase;
-import com.example.myapp.Util.RequestCallBack;
-import com.example.myapp.Util.ResultCallBack;
 
 import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BmobQueryResult;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SQLQueryListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class Manager {
 
@@ -33,45 +25,17 @@ public class Manager {
         recordDAO = db.recordDAO();
     }
 
-    // local
-//    public LiveData<List<Tag>> getAllTags() {
-//        return tagDao.getAllTags();
-//    }
-
-    // cloud
-    public void getAllTags(ResultCallBack<List<TagCloud>> callBack) {
-       String query = "select *from TagCloud";
-        new BmobQuery<TagCloud>().doSQLQuery(query, new SQLQueryListener<TagCloud>() {
-            @Override
-            public void done(BmobQueryResult<TagCloud> bmobQueryResult, BmobException e) {
-                callBack.onArrive(bmobQueryResult.getResults());
-            }
-        });
+    public LiveData<List<Tag>> getAllTags() {
+        return tagDao.getAllTags();
     }
 
-    // local
     public LiveData<Tag> getTag(String tagName) {
         return tagDao.getTag(tagName);
     }
 
-    // cloud
-
-
-    // local
-//    public void addTag(Tag tag) {
-//        appDatabase.dbExecutor.execute(() -> {
-//            tagDao.addTag(tag);
-//        });
-//    }
-
-    // cloud
-    public void addTag(Tag tag, RequestCallBack callBack) {
-        TagCloud data = new TagCloud(tag.name, tag.description);
-        data.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                callBack.onComplete(e == null);
-            }
+    public void addTag(Tag tag) {
+        appDatabase.dbExecutor.execute(() -> {
+            tagDao.addTag(tag);
         });
     }
 
