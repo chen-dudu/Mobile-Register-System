@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.Repository.Manager;
+import com.example.myapp.Util.RequestCallBack;
 
 public class CreateTagViewModel extends ViewModel {
 
@@ -15,7 +16,7 @@ public class CreateTagViewModel extends ViewModel {
         manager = new Manager(application);
     }
 
-    public void addTag(Tag tag) {
-        manager.addTag(tag);
+    public void addTag(Tag tag, RequestCallBack callBack) {
+        manager.addTag(tag, callBack);
     }
 }

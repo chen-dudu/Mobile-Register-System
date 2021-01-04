@@ -1,5 +1,6 @@
 package com.example.myapp.UI;
 
+import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
 import com.example.myapp.Util.CreateTagViewModelFactory;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.CreateTagViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -65,13 +68,19 @@ public class CreateTagActivity extends AppCompatActivity {
                 des = null;
             }
             Tag newTag = new Tag(name, des);
-            viewModel.addTag(newTag);
-            Context c = view.getContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(c, "标签创建成功", duration);
-            t.show();
-            Intent i = new Intent(c, MainActivity.class);
-            startActivity(i);
+            viewModel.addTag(newTag, new RequestCallBack() {
+                @Override
+                public void onComplete(boolean isSuccessful) {
+                    Context c = view.getContext();
+                    if (isSuccessful) {
+                        Toast.makeText(c, "标签创建成功", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(c, "标签创建失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
