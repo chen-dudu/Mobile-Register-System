@@ -3,15 +3,19 @@ package com.example.myapp.Repository;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.RecordDAO;
 import com.example.myapp.DB.local.Tag;
+import com.example.myapp.DB.local.TagCloud;
 import com.example.myapp.DB.local.TagDao;
 import com.example.myapp.DB.local.appDatabase;
+import com.example.myapp.Util.RequestCallBack;
 
 import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class Manager {
 
@@ -33,9 +37,21 @@ public class Manager {
         return tagDao.getTag(tagName);
     }
 
-    public void addTag(Tag tag) {
-        appDatabase.dbExecutor.execute(() -> {
-            tagDao.addTag(tag);
+    // local
+//    public void addTag(Tag tag) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            tagDao.addTag(tag);
+//        });
+//    }
+
+    // cloud
+    public void addTag(Tag tag, RequestCallBack callBack) {
+        TagCloud data = new TagCloud(tag.name, tag.description);
+        data.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                callBack.onComplete(e == null);
+            }
         });
     }
 
