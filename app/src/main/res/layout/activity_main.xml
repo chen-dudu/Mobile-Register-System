@@ -172,6 +172,7 @@
             android:textSize="20sp"
             android:onClick="onClickExport"
             android:layout_weight="1"
+            android:visibility="invisible"
             />
 
         <TextView
