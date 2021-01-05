@@ -4,7 +4,6 @@ import cn.bmob.v3.BmobObject;
 
 public class RecordCloud extends BmobObject {
 
-    private String id;
     private String province;
     private String city;
     private String district;
@@ -13,9 +12,8 @@ public class RecordCloud extends BmobObject {
     private String description;
     private String tag;
 
-    public RecordCloud(String id, String province, String city, String district, String road,
+    public RecordCloud(String province, String city, String district, String road,
                        String detail, String description, String tag) {
-        this.id = id;
         this.province = province;
         this.city = city;
         this.district = district;
@@ -23,10 +21,6 @@ public class RecordCloud extends BmobObject {
         this.detail = detail;
         this.description = description;
         this.tag = tag;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getProvince() {
