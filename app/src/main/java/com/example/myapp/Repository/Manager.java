@@ -21,6 +21,7 @@ import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class Manager {
 
@@ -106,10 +107,22 @@ public class Manager {
         });
     }
 
-    public void updateDescription(Tag tag) {
-        appDatabase.dbExecutor.execute(() -> {
-            tagDao.updateDescription(tag);
-        });
+    // local
+//    public void updateDescription(Tag tag) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            tagDao.updateDescription(tag);
+//        });
+//    }
+
+    // cloud
+    public void updateDescription(Tag tag, String description, RequestCallBack callBack) {
+         TagCloud temp = new TagCloud(tag.name, description);
+         temp.update(tag.id, new UpdateListener() {
+             @Override
+             public void done(BmobException e) {
+                 callBack.onComplete(e == null);
+             }
+         });
     }
 
     public void deleteTag(Tag tag) {
