@@ -1,7 +1,6 @@
 package com.example.myapp.Repository;
 
 import android.app.Application;
-import android.util.MutableBoolean;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -52,7 +51,7 @@ public class Manager {
                 if (e == null) {
                     List<Tag> temp = new ArrayList<>();
                     for (TagCloud t : bmobQueryResult.getResults()) {
-                        temp.add(new Tag(t.getName(), t.getDescription()));
+                        temp.add(new Tag(t.getName(), t.getObjectId(), t.getDescription()));
                     }
                     result.postValue(temp);
                 }
@@ -77,7 +76,7 @@ public class Manager {
                 if (e == null) {
                     if (bmobQueryResult.getResults().size() > 0) {
                         TagCloud temp = bmobQueryResult.getResults().get(0);
-                        result.postValue(new Tag(temp.getName(), temp.getDescription()));
+                        result.postValue(new Tag(temp.getName(), temp.getObjectId(), temp.getDescription()));
                     }
                     else {
                         // no match

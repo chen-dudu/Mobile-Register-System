@@ -16,12 +16,17 @@ public class Tag {
     @NonNull
     public String name;
 
+    @ColumnInfo(name = "Tag ID")
+    @NonNull
+    public String id;
+
     @ColumnInfo(name = "Tag description")
     @Nullable
     public String description;
 
-    public Tag(@NonNull String name, @Nullable String description) {
+    public Tag(@NonNull String name, @NonNull String id, @Nullable String description) {
         this.name = name;
+        this.id = id;
         this.description = description;
     }
 
