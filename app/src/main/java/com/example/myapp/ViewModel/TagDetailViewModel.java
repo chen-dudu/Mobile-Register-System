@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.Repository.Manager;
+import com.example.myapp.Util.RequestCallBack;
 
 public class TagDetailViewModel extends ViewModel {
     private Manager manager;
@@ -19,7 +20,7 @@ public class TagDetailViewModel extends ViewModel {
         return manager.getTag(name);
     }
 
-    public void deleteTag(Tag tag) {
-        manager.deleteTag(tag);
+    public void deleteTag(String id, RequestCallBack callBack) {
+        manager.deleteTag(id, callBack);
     }
 }

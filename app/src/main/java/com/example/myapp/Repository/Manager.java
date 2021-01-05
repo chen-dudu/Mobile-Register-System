@@ -125,9 +125,22 @@ public class Manager {
          });
     }
 
-    public void deleteTag(Tag tag) {
-        appDatabase.dbExecutor.execute(() -> {
-            tagDao.deleteTag(tag);
+    // local
+//    public void deleteTag(Tag tag) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            tagDao.deleteTag(tag);
+//        });
+//    }
+
+    // cloud
+    public void deleteTag(String id, RequestCallBack callBack) {
+        TagCloud temp = new TagCloud("", "");
+        temp.setObjectId(id);
+        temp.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                callBack.onComplete(e == null);
+            }
         });
     }
 

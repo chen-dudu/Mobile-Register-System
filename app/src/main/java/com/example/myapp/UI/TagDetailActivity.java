@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.Util.TagDetailViewModelFactory;
 import com.example.myapp.ViewModel.TagDetailViewModel;
 
@@ -59,13 +60,23 @@ public class TagDetailActivity extends AppCompatActivity {
     }
 
     public void onClickTagDetailDelete(View view) {
-        viewModel.deleteTag(t);
-        Context c = view.getContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast t = Toast.makeText(c, "标签删除成功", duration);
-        t.show();
-        Intent i = new Intent(c, MainActivity.class);
-        startActivity(i);
+        viewModel.deleteTag(t.id, new RequestCallBack() {
+            @Override
+            public void onComplete(boolean isSuccessful) {
+                Context c = view.getContext();
+                Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                if (isSuccessful) {
+                    t.setText("标签删除成功");
+                    t.show();
+                    Intent i = new Intent(c, MainActivity.class);
+                    c.startActivity(i);
+                }
+                else {
+                    t.setText("标签删除失败");
+                    t.show();
+                }
+            }
+        });
     }
 
     public void onClickTagDetailHome(View view) {
