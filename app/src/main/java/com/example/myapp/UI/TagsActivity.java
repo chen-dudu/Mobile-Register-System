@@ -44,14 +44,15 @@ public class TagsActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Tag> tags) {
                 Context c = getApplication();
+                Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                t.setText("正在搜索...");
+                t.show();
                 if (tags != null) {
                     // request result comes back when tags is not null
                     if (tags.size() == 0) {
-//                        Context c = getApplication();
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast t = Toast.makeText(c, "未找到结果。", duration);
-                        t.show();
+                        t.setText("未找到结果。");
                     } else {
+                        t.cancel();
                         adapter.setData(tags);
                     }
                 }
