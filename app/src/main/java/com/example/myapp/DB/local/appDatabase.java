@@ -28,7 +28,6 @@ public abstract class appDatabase extends RoomDatabase {
                     instance = Room.databaseBuilder(c.getApplicationContext(),
                             appDatabase.class, "app_database")
                             .addMigrations(MIGRATION_1_2)
-                            .addCallback(initialCallback)
                             .build();
                 }
             }
@@ -46,8 +45,8 @@ public abstract class appDatabase extends RoomDatabase {
                 tagDao.deleteAll();
 
                 // mock tag data
-                tagDao.addTag(new Tag("用户满意度调查", "这个标签用于用户满意度相关的数据记录"));
-                tagDao.addTag(new Tag("信号覆盖强度调查", "这个标签用于信号强度相关的数据记录"));
+                tagDao.addTag(new Tag("用户满意度调查", "0", "这个标签用于用户满意度相关的数据记录"));
+                tagDao.addTag(new Tag("信号覆盖强度调查", "0", "这个标签用于信号强度相关的数据记录"));
 
                 RecordDAO recordDAO = instance.recordDAO();
                 recordDAO.deleteAll();
