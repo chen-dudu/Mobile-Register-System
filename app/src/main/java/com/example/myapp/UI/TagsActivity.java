@@ -43,14 +43,17 @@ public class TagsActivity extends AppCompatActivity {
         viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
-                if (tags.size() == 0) {
-                    Context c = getApplication();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast t = Toast.makeText(c, "未找到结果。", duration);
-                    t.show();
-                }
-                else {
-                    adapter.setData(tags);
+                Context c = getApplication();
+                if (tags != null) {
+                    // request result comes back when tags is not null
+                    if (tags.size() == 0) {
+//                        Context c = getApplication();
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast t = Toast.makeText(c, "未找到结果。", duration);
+                        t.show();
+                    } else {
+                        adapter.setData(tags);
+                    }
                 }
             }
         });
