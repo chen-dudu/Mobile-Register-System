@@ -1,8 +1,6 @@
 package com.example.myapp.UI;
 
-import android.content.ContentProvider;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapp.DB.local.Tag;
@@ -20,7 +17,6 @@ import com.example.myapp.R;
 import com.example.myapp.Util.CreateTagViewModelFactory;
 import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.CreateTagViewModel;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CreateTagActivity extends AppCompatActivity {
@@ -67,7 +63,7 @@ public class CreateTagActivity extends AppCompatActivity {
             if (des.length() == 0) {
                 des = null;
             }
-            Tag newTag = new Tag(name, des);
+            Tag newTag = new Tag(name, "0", des);
             viewModel.addTag(newTag, new RequestCallBack() {
                 @Override
                 public void onComplete(boolean isSuccessful) {
