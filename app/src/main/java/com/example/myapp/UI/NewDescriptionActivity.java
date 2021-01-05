@@ -6,14 +6,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
 import com.example.myapp.Util.NewDescriptionViewModelFactory;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.NewDescriptionViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -23,7 +26,8 @@ public class NewDescriptionActivity extends AppCompatActivity {
     private EditText editText;
     private TextInputLayout layout;
 
-    private String tagToUpdate;
+//    private String tagName;
+    private Tag tagToUpdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,9 +35,15 @@ public class NewDescriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_description);
 
         Intent i = getIntent();
-        tagToUpdate = i.getStringExtra("tagName");
-
+        String tagName = i.getStringExtra("tagName");
+//        System.out.println(tagName);
         viewModel = new ViewModelProvider(this, new NewDescriptionViewModelFactory(this.getApplication())).get(NewDescriptionViewModel.class);
+        viewModel.getTag(tagName).observe(this, new Observer<Tag>() {
+            @Override
+            public void onChanged(Tag tag) {
+                tagToUpdate = tag;
+            }
+        });
 
         editText = findViewById(R.id.new_description);
         layout = findViewById(R.id.new_description_layout);
@@ -58,8 +68,16 @@ public class NewDescriptionActivity extends AppCompatActivity {
         }
         else {
             layout.setError(null);
-            viewModel.updateDescription(new Tag(tagToUpdate, newDescription));
-            finish();
+            viewModel.updateDescription(tagToUpdate, newDescription, new RequestCallBack() {
+                @Override
+                public void onComplete(boolean isSuccessful) {
+                    Toast t = Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT);
+                    t.setText("描述修改成功");
+                    t.show();
+                    finish();
+                }
+            });
+//            finish();
         }
     }
 
