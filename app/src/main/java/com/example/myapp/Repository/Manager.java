@@ -61,8 +61,32 @@ public class Manager {
         return result;
     }
 
-    public LiveData<Tag> getTag(String tagName) {
-        return tagDao.getTag(tagName);
+    // local
+//    public LiveData<Tag> getTag(String tagName) {
+//        return tagDao.getTag(tagName);
+//    }
+
+    // cloud
+    public LiveData<Tag> getTag(String name) {
+        MutableLiveData<Tag> result = new MutableLiveData<>();
+//        result.postValue(null);
+        String query = "select * from TagCloud where name = ?";
+        new BmobQuery<TagCloud>().doSQLQuery(query, new SQLQueryListener<TagCloud>() {
+            @Override
+            public void done(BmobQueryResult<TagCloud> bmobQueryResult, BmobException e) {
+                if (e == null) {
+                    if (bmobQueryResult.getResults().size() > 0) {
+                        TagCloud temp = bmobQueryResult.getResults().get(0);
+                        result.postValue(new Tag(temp.getName(), temp.getDescription()));
+                    }
+                    else {
+                        // no match
+                        result.postValue(null);
+                    }
+                }
+            }
+        }, name);
+        return result;
     }
 
     // local
