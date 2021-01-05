@@ -1,11 +1,13 @@
 package com.example.myapp.Repository;
 
 import android.app.Application;
+import android.view.animation.ScaleAnimation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.myapp.DB.local.Record;
+import com.example.myapp.DB.local.RecordCloud;
 import com.example.myapp.DB.local.RecordDAO;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.DB.local.TagCloud;
@@ -146,9 +148,22 @@ public class Manager {
 
     /*--------------------------------------------------------------------------------------------*/
 
-    public void addRecord(Record record) {
-        appDatabase.dbExecutor.execute(() -> {
-            recordDAO.addRecord(record);
+    // local
+//    public void addRecord(Record record) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            recordDAO.addRecord(record);
+//        });
+//    }
+
+    // cloud
+    public void addRecord(Record record, RequestCallBack callBack) {
+        RecordCloud temp = new RecordCloud(record.province, record.city, record.district, record.road,
+                                            record.detail, record.description, record.tag);
+        temp.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                callBack.onComplete(e == null);
+            }
         });
     }
 

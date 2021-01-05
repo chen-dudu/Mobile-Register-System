@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
 import com.example.myapp.Util.EnterViewModeFactory;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.Util.TagsViewModelFactory;
 import com.example.myapp.ViewModel.EnterViewModel;
 import com.example.myapp.ViewModel.TagsViewModel;
@@ -75,11 +77,13 @@ public class EnterActivity extends AppCompatActivity {
         viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
-                optionItems.clear();
-                for (int i = 0; i < tags.size(); i++) {
-                    optionItems.add(tags.get(i).name);
+                if (tags != null) {
+                    optionItems.clear();
+                    for (int i = 0; i < tags.size(); i++) {
+                        optionItems.add(tags.get(i).name);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
         });
 
@@ -214,10 +218,23 @@ public class EnterActivity extends AppCompatActivity {
 
         if (checkPass) {
             System.out.println("checking passed");
-            viewModel.addRecord(new Record(province, city, district, road, detail, description, tag));
-            Context c = view.getContext();
-            Intent i = new Intent(c, MainActivity.class);
-            startActivity(i);
+            viewModel.addRecord(new Record(province, city, district, road, detail, description, tag), new RequestCallBack() {
+                @Override
+                public void onComplete(boolean isSuccessful) {
+                    Context c = view.getContext();
+                    Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                    if (isSuccessful) {
+                        t.setText("创建记录成功");
+                        t.show();
+                        Intent i = new Intent(c, MainActivity.class);
+                        c.startActivity(i);
+                    }
+                    else {
+                        t.setText("创建记录失败");
+                        t.show();
+                    }
+                }
+            });
         }
         else {
             System.out.println(">>> checking fails");
