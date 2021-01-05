@@ -49,7 +49,7 @@ public class Manager {
         new BmobQuery<TagCloud>().doSQLQuery(query, new SQLQueryListener<TagCloud>() {
             @Override
             public void done(BmobQueryResult<TagCloud> bmobQueryResult, BmobException e) {
-                if (e != null) {
+                if (e == null) {
                     List<Tag> temp = new ArrayList<>();
                     for (TagCloud t : bmobQueryResult.getResults()) {
                         temp.add(new Tag(t.getName(), t.getDescription()));
