@@ -11,9 +11,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Record {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "ID")
-    public int id;
+    @NonNull
+    public String id;
 
     @ColumnInfo(name = "Province")
     @NonNull
@@ -44,8 +45,9 @@ public class Record {
     @NonNull
     public String tag = "";
 
-    public Record(@NonNull String province, @NonNull String city, @NonNull String district,
+    public Record(@NonNull String id, @NonNull String province, @NonNull String city, @NonNull String district,
                   @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag) {
+        this.id = id;
         this.province = province;
         this.city = city;
         this.district = district;
