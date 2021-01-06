@@ -1,7 +1,6 @@
 package com.example.myapp.Repository;
 
 import android.app.Application;
-import android.view.animation.ScaleAnimation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -46,7 +45,7 @@ public class Manager {
     public LiveData<List<Tag>> getAllTags() {
         MutableLiveData<List<Tag>> result = new MutableLiveData<>();
 //        List<Tag> tags = new ArrayList<>();
-        result.postValue(null);
+//        result.postValue(null);
         String query = "select * from TagCloud order by name";
         new BmobQuery<TagCloud>().doSQLQuery(query, new SQLQueryListener<TagCloud>() {
             @Override
@@ -193,8 +192,29 @@ public class Manager {
         return result;
     }
 
+    // local
+//    public LiveData<List<Record>> getRecordsByTag(String tagName) {
+//        return recordDAO.getRecordsByTag(tagName);
+//    }
+
+    // cloud
     public LiveData<List<Record>> getRecordsByTag(String tagName) {
-        return recordDAO.getRecordsByTag(tagName);
+        MutableLiveData<List<Record>> result = new MutableLiveData<>();
+        String query = "select * from RecordCloud where tag = ?";
+        new BmobQuery<RecordCloud>().doSQLQuery(query, new SQLQueryListener<RecordCloud>() {
+            @Override
+            public void done(BmobQueryResult<RecordCloud> bmobQueryResult, BmobException e) {
+                if (e == null) {
+                    List<Record> temp = new ArrayList<>();
+                    for (RecordCloud r : bmobQueryResult.getResults()) {
+                        temp.add(new Record(r.getObjectId(), r.getProvince(), r.getCity(), r.getDistrict(),
+                                            r.getRoad(), r.getDetail(), r.getDescription(), r.getTag()));
+                    }
+                    result.postValue(temp);
+                }
+            }
+        }, tagName);
+        return result;
     }
 
     public LiveData<Record> getRecordById(int id) {
