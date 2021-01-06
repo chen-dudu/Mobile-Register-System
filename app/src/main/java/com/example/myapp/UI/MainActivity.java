@@ -7,8 +7,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myapp.R;
 
@@ -32,8 +37,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestPermissions(PERMISSIONS_NEEDED, REQUEST_CODE_EXPORT);
-        // init Bmob DB
-        Bmob.initialize(this, "82326b7d373f04180abfe46ece1c3de4");
+        Button enter = findViewById(R.id.main_enter_button);
+        Button checkRecord = findViewById(R.id.main_check_record_button);
+        Button createTag = findViewById(R.id.main_create_tag_button);
+        Button checkTag = findViewById(R.id.main_check_tag_button);
+        ConnectivityManager cm = getSystemService(ConnectivityManager.class);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if (info != null && info.isConnected()) {
+            // online
+            // init Bmob DB
+            Bmob.initialize(this, "82326b7d373f04180abfe46ece1c3de4");
+        }
+        else {
+            // off-line, disable button to block user interaction
+            enter.setEnabled(false);
+            checkRecord.setEnabled(false);
+            createTag.setEnabled(false);
+            checkTag.setEnabled(false);
+            Toast t = Toast.makeText(this, "", Toast.LENGTH_LONG);
+            t.setText("设备未联网，请联网后重新打开");
+            t.show();
+        }
     }
 
     @Override
