@@ -52,7 +52,7 @@ public abstract class appDatabase extends RoomDatabase {
                 recordDAO.deleteAll();
 
                 // mock record data
-                recordDAO.addRecord(new Record("广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "信号覆盖强度调查"));
+                recordDAO.addRecord(new Record("0", "广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "信号覆盖强度调查"));
             });
         }
     };

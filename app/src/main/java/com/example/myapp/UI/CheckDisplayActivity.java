@@ -99,7 +99,7 @@ public class CheckDisplayActivity extends AppCompatActivity {
             private TextView description;
             private TextView tag;
 
-            private int id;
+            private String id;
 
             public ViewHolder(View view) {
                 super(view);
@@ -129,11 +129,11 @@ public class CheckDisplayActivity extends AppCompatActivity {
                 return tag;
             }
 
-            public int getId() {
+            public String getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(String id) {
                 this.id = id;
             }
         }

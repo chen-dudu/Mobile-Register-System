@@ -218,7 +218,7 @@ public class EnterActivity extends AppCompatActivity {
 
         if (checkPass) {
             System.out.println("checking passed");
-            viewModel.addRecord(new Record(province, city, district, road, detail, description, tag), new RequestCallBack() {
+            viewModel.addRecord(new Record("0", province, city, district, road, detail, description, tag), new RequestCallBack() {
                 @Override
                 public void onComplete(boolean isSuccessful) {
                     Context c = view.getContext();
@@ -226,8 +226,9 @@ public class EnterActivity extends AppCompatActivity {
                     if (isSuccessful) {
                         t.setText("创建记录成功");
                         t.show();
-                        Intent i = new Intent(c, MainActivity.class);
-                        c.startActivity(i);
+//                        Intent i = new Intent(c, MainActivity.class);
+//                        c.startActivity(i);
+                        finish();
                     }
                     else {
                         t.setText("创建记录失败");
