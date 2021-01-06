@@ -167,8 +167,30 @@ public class Manager {
         });
     }
 
+    // local
+//    public LiveData<List<Record>> getAllRecords() {
+//        return recordDAO.getAllRecords();
+//    }
+
+    // cloud
     public LiveData<List<Record>> getAllRecords() {
-        return recordDAO.getAllRecords();
+        MutableLiveData<List<Record>> result = new MutableLiveData<>();
+        String query = "select * from RecordCloud";
+        System.out.println(">>> hhh");
+        new BmobQuery<RecordCloud>().doSQLQuery(query, new SQLQueryListener<RecordCloud>() {
+            @Override
+            public void done(BmobQueryResult<RecordCloud> bmobQueryResult, BmobException e) {
+                List<Record> temp = new ArrayList<>();
+                if (e == null) {
+                    for (RecordCloud r : bmobQueryResult.getResults()){
+                        temp.add(new Record(r.getObjectId(), r.getProvince(), r.getCity(), r.getDistrict(),
+                                            r.getRoad(), r.getDetail(), r.getDescription(), r.getTag()));
+                    }
+                }
+                result.postValue(temp);
+            }
+        });
+        return result;
     }
 
     public LiveData<List<Record>> getRecordsByTag(String tagName) {
