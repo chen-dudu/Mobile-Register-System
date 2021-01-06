@@ -40,7 +40,7 @@ public class RecordUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record_update);
 
         Intent i = getIntent();
-        int id = i.getIntExtra("id", -1);
+        String id = i.getStringExtra("id");
 
         viewModel = new ViewModelProvider(this, new RecordUpdateViewModelFactory(this.getApplication())).get(RecordUpdateViewModel.class);
 

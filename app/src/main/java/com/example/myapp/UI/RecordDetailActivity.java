@@ -30,7 +30,7 @@ public class RecordDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record_detail);
 
         Intent i = getIntent();
-        int id = i.getIntExtra("id", -1);
+        String id = i.getStringExtra("id");
 
         viewModel = new ViewModelProvider(this, new RecordDetailViewModelFactory(this.getApplication())).get(RecordDetailViewModel.class);
 

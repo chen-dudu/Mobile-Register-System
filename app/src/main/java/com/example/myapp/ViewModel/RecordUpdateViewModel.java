@@ -19,7 +19,7 @@ public class RecordUpdateViewModel extends ViewModel {
         this.manager = new Manager(application);
     }
 
-    public LiveData<Record> getRecord(int id) {
+    public LiveData<Record> getRecord(String id) {
         return manager.getRecordById(id);
     }
 
