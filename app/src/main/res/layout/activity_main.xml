@@ -35,6 +35,7 @@
             android:layout_weight="4" />
 
         <Button
+            android:id="@+id/main_enter_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="录入信息"
@@ -67,6 +68,7 @@
             android:layout_weight="4" />
 
         <Button
+            android:id="@+id/main_check_record_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="查看已录入信息"
@@ -101,6 +103,7 @@
             android:layout_weight="4" />
 
         <Button
+            android:id="@+id/main_create_tag_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="创建新标签"
@@ -133,6 +136,7 @@
             android:layout_weight="4" />
 
         <Button
+            android:id="@+id/main_check_tag_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="查看所有标签"
