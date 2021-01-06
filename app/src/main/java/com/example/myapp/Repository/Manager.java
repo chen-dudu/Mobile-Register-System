@@ -20,6 +20,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -217,8 +218,28 @@ public class Manager {
         return result;
     }
 
-    public LiveData<Record> getRecordById(int id) {
-        return recordDAO.getRecordById(id);
+    // local
+//    public LiveData<Record> getRecordById(int id) {
+//        return recordDAO.getRecordById(id);
+//    }
+
+    // cloud
+    public LiveData<Record> getRecordById(String id) {
+        MutableLiveData<Record> result = new MutableLiveData<>();
+        new BmobQuery<RecordCloud>().getObject(id, new QueryListener<RecordCloud>() {
+            @Override
+            public void done(RecordCloud recordCloud, BmobException e) {
+                if (e == null) {
+                    result.postValue(new Record(recordCloud.getObjectId(), recordCloud.getProvince(),
+                            recordCloud.getCity(), recordCloud.getDistrict(), recordCloud.getRoad(),
+                            recordCloud.getDetail(), recordCloud.getDescription(), recordCloud.getTag()));
+                }
+                else {
+                    result.postValue(null);
+                }
+            }
+        });
+        return result;
     }
 
     public void update(Record record) {
