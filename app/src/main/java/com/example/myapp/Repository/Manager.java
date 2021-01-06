@@ -242,9 +242,22 @@ public class Manager {
         return result;
     }
 
-    public void update(Record record) {
-        appDatabase.dbExecutor.execute(() -> {
-            recordDAO.update(record);
+    // local
+//    public void update(Record record) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            recordDAO.update(record);
+//        });
+//    }
+
+    // cloud
+    public void update(Record record, RequestCallBack callBack) {
+        RecordCloud temp = new RecordCloud(record.province, record.city, record.district, record.road,
+                                            record.detail, record.description, record.tag);
+        temp.update(record.id, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                callBack.onComplete(e == null);
+            }
         });
     }
 

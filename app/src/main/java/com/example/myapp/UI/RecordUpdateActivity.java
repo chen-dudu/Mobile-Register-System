@@ -21,6 +21,7 @@ import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
 import com.example.myapp.Util.RecordUpdateViewModelFactory;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.RecordUpdateViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -226,13 +227,21 @@ public class RecordUpdateActivity extends AppCompatActivity {
                     r.description = description;
                     r.tag = tag;
 
-                    viewModel.update(r);
-
-                    Context c = v.getContext();
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast t = Toast.makeText(c, "记录修改成功", duration);
-                    t.show();
-                    finish();
+                    viewModel.update(r, new RequestCallBack() {
+                        @Override
+                        public void onComplete(boolean isSuccessful) {
+                            Context c = v.getContext();
+                            Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                            if (isSuccessful) {
+                                t.setText("记录修改成功");
+                                t.show();
+                            }
+                            else {
+                                t.setText("记录修改失败");
+                                t.show();
+                            }
+                        }
+                    });
                 }
                 else {
                     System.out.println(">>> check failed");

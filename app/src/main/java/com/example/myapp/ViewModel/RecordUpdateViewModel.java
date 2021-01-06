@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.Repository.Manager;
+import com.example.myapp.Util.RequestCallBack;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class RecordUpdateViewModel extends ViewModel {
         return manager.getAllTags();
     }
 
-    public void update(Record record) {
-        manager.update(record);
+    public void update(Record record, RequestCallBack callBack) {
+        manager.update(record, callBack);
     }
 }
