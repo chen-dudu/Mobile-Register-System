@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.Repository.Manager;
+import com.example.myapp.Util.RequestCallBack;
 
 public class RecordDetailViewModel extends ViewModel {
 
@@ -20,7 +21,7 @@ public class RecordDetailViewModel extends ViewModel {
         return manager.getRecordById(id);
     }
 
-    public void delete(Record record) {
-        manager.deleteRecord(record);
+    public void delete(String id, RequestCallBack callBack) {
+        manager.deleteRecord(id, callBack);
     }
 }

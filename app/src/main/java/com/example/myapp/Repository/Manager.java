@@ -248,9 +248,22 @@ public class Manager {
         });
     }
 
-    public void deleteRecord(Record record) {
-        appDatabase.dbExecutor.execute(() -> {
-            recordDAO.deleteRecord(record);
+    // local
+//    public void deleteRecord(Record record) {
+//        appDatabase.dbExecutor.execute(() -> {
+//            recordDAO.deleteRecord(record);
+//        });
+//    }
+
+    // cloud
+    public void deleteRecord(String id, RequestCallBack callBack) {
+        RecordCloud temp = new RecordCloud("", "", "", "", "", "", "");
+        temp.setObjectId(id);
+        temp.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                callBack.onComplete(e == null);
+            }
         });
     }
 }

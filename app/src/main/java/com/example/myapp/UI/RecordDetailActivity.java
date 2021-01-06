@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.R;
 import com.example.myapp.Util.RecordDetailViewModelFactory;
+import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.RecordDetailViewModel;
 
 public class RecordDetailActivity extends AppCompatActivity {
@@ -65,15 +66,23 @@ public class RecordDetailActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.delete(r);
-                Context c = v.getContext();
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast t = Toast.makeText(c, "记录删除成功", duration);
-                t.show();
-
-                Intent i = new Intent(c, MainActivity.class);
-                startActivity(i);
+                viewModel.delete(r.id, new RequestCallBack() {
+                    @Override
+                    public void onComplete(boolean isSuccessful) {
+                        Context c = v.getContext();
+                        Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                        if (isSuccessful) {
+                            t.setText("记录删除成功");
+                            t.show();
+                            Intent i = new Intent(c, MainActivity.class);
+                            startActivity(i);
+                        }
+                        else {
+                            t.setText("记录删除失败");
+                            t.show();
+                        }
+                    }
+                });
             }
         });
 
