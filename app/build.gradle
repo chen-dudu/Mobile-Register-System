@@ -59,5 +59,8 @@ dependencies {
 
     // AMap
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 2d map
     implementation 'com.amap.api:map2d:6.0.0'
+    // search
+    implementation 'com.amap.api:search:7.7.0'
 }
