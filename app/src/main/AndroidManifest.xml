@@ -50,6 +50,10 @@
             android:authorities="com.example.myapp.BmobContentProvider"
             android:name="cn.bmob.v3.util.BmobContentProvider">
         </provider>
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b7de8d2928b10ef06933c772f86186d8" />
     </application>
 
 </manifest>
