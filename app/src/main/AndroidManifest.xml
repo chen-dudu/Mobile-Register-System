@@ -46,7 +46,8 @@
         <activity android:name=".UI.ExportActivity" />
         <activity android:name=".UI.ExportChooseTagActivity" />
         <activity android:name=".UI.CheckDisplayGraphActivity" />
-        
+        <activity android:name=".UI.RecordUpdateStatusActivity" />
+
         <provider
             android:authorities="com.example.myapp.BmobContentProvider"
             android:name="cn.bmob.v3.util.BmobContentProvider">
