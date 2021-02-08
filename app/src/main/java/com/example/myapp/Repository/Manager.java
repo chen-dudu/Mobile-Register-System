@@ -275,7 +275,7 @@ public class Manager {
 
     // cloud
     public void deleteRecord(String id, RequestCallBack callBack) {
-        RecordCloud temp = new RecordCloud("", "", "", "", "", "", "", "", "", "");
+        RecordCloud temp = new RecordCloud("", "", "", "", "", "", "", 0d, 0d, "");
         temp.setObjectId(id);
         temp.delete(new UpdateListener() {
             @Override
