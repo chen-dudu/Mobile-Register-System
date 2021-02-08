@@ -2,6 +2,7 @@ package com.example.myapp.UI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,9 +158,22 @@ public class CheckDisplayActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Record r = dataset.get(position);
             String address = r.province + r.city + r.district + r.road + r.detail;
-            holder.getAddress().setText(address);
-            holder.getDescription().setText(r.description);
-            holder.getTag().setText(r.tag);
+            TextView addrView = holder.getAddress();
+            TextView desView = holder.getDescription();
+            TextView tagView = holder.getTag();
+            if (r.status.equals("通过")) {
+                addrView.setTextColor(Color.GREEN);
+                desView.setTextColor(Color.GREEN);
+                tagView.setTextColor(Color.GREEN);
+            }
+            else if (r.status.equals("失败")) {
+                addrView.setTextColor(Color.RED);
+                desView.setTextColor(Color.RED);
+                tagView.setTextColor(Color.RED);
+            }
+            addrView.setText(address);
+            desView.setText(r.description);
+            tagView.setText(r.tag);
             holder.setId(r.id);
         }
 
