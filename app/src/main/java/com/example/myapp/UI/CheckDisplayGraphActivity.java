@@ -82,7 +82,12 @@ public class CheckDisplayGraphActivity extends AppCompatActivity {
                     MarkerOptions option = new MarkerOptions();
                     option.position(location);
                     option.title("地址: " + r.province + r.city + r.district + r.road + r.detail);
-                    option.snippet("描述: " + r.description + "\n" + "状态: " + r.status);
+                    if (r.note.length() > 0) {
+                        option.snippet("描述: " + r.description + "\n" + "状态: " + r.status + "\n" + "审核说明：" + r.note);
+                    }
+                    else {
+                        option.snippet("描述: " + r.description + "\n" + "状态: " + r.status + "\n" + "审核说明：N/A");
+                    }
                     if (r.status.equals("等待审核")) {
                         option.icon(BitmapDescriptorFactory.fromResource(R.drawable.pending));
                     }
