@@ -45,8 +45,21 @@ public class Record {
     @NonNull
     public String tag = "";
 
+    @ColumnInfo(name = "Lng")
+    @NonNull
+    public String lng = "";
+
+    @ColumnInfo(name = "Lat")
+    @NonNull
+    public String lat = "";
+
+    @ColumnInfo(name = "Status")
+    @NonNull
+    public String status = "";
+
     public Record(@NonNull String id, @NonNull String province, @NonNull String city, @NonNull String district,
-                  @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag) {
+                  @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag,
+                  @NonNull String lng, @NonNull String lat, @NonNull String status) {
         this.id = id;
         this.province = province;
         this.city = city;
@@ -55,5 +68,8 @@ public class Record {
         this.detail = detail;
         this.description = description;
         this.tag = tag;
+        this.lng = lng;
+        this.lat = lat;
+        this.status = status;
     }
 }
