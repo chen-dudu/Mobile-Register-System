@@ -52,7 +52,8 @@
                     android:id="@+id/create_record_province"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="省份" />
+                    android:hint="省份"
+                    android:text="广西"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +74,8 @@
                     android:id="@+id/create_record_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="城市" />
+                    android:hint="城市"
+                    android:text="北海"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
