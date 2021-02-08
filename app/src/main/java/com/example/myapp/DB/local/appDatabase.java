@@ -35,27 +35,27 @@ public abstract class appDatabase extends RoomDatabase {
         return instance;
     }
 
-    private static RoomDatabase.Callback initialCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            dbExecutor.execute(() -> {
-                TagDao tagDao = instance.tagDao();
-                tagDao.deleteAll();
-
-                // mock tag data
-                tagDao.addTag(new Tag("用户满意度调查", "0", "这个标签用于用户满意度相关的数据记录"));
-                tagDao.addTag(new Tag("信号覆盖强度调查", "0", "这个标签用于信号强度相关的数据记录"));
-
-                RecordDAO recordDAO = instance.recordDAO();
-                recordDAO.deleteAll();
-
-                // mock record data
-                recordDAO.addRecord(new Record("0", "广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "信号覆盖强度调查"));
-            });
-        }
-    };
+//    private static RoomDatabase.Callback initialCallback = new RoomDatabase.Callback() {
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//
+//            dbExecutor.execute(() -> {
+//                TagDao tagDao = instance.tagDao();
+//                tagDao.deleteAll();
+//
+//                // mock tag data
+//                tagDao.addTag(new Tag("用户满意度调查", "0", "这个标签用于用户满意度相关的数据记录"));
+//                tagDao.addTag(new Tag("信号覆盖强度调查", "0", "这个标签用于信号强度相关的数据记录"));
+//
+//                RecordDAO recordDAO = instance.recordDAO();
+//                recordDAO.deleteAll();
+//
+//                // mock record data
+//                recordDAO.addRecord(new Record("0", "广西", "北海", "海城区", "北部湾西路", "1号", "信号覆盖强度：高", "信号覆盖强度调查"));
+//            });
+//        }
+//    };
 
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
