@@ -163,9 +163,9 @@ public class CheckDisplayActivity extends AppCompatActivity {
             TextView desView = holder.getDescription();
             TextView tagView = holder.getTag();
             if (r.status.equals("通过")) {
-                addrView.setTextColor(Color.GREEN);
-                desView.setTextColor(Color.GREEN);
-                tagView.setTextColor(Color.GREEN);
+                addrView.setTextColor(Color.rgb(0, 200, 0));
+                desView.setTextColor(Color.rgb(0, 200, 0));
+                tagView.setTextColor(Color.rgb(0, 200, 0));
             }
             else if (r.status.equals("失败")) {
                 addrView.setTextColor(Color.RED);
