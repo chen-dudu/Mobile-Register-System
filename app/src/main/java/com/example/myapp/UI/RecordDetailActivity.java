@@ -36,6 +36,7 @@ public class RecordDetailActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this, new RecordDetailViewModelFactory(this.getApplication())).get(RecordDetailViewModel.class);
 
         Button update = findViewById(R.id.record_detail_button_update_info);
+        Button updateStatus = findViewById(R.id.record_detail_button_update_status);
         Button delete = findViewById(R.id.record_detail_button_delete);
         Button back = findViewById(R.id.record_detail_button_home);
         TextView address = findViewById(R.id.record_detail_address);
@@ -58,6 +59,16 @@ public class RecordDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Context c = v.getContext();
                 Intent i = new Intent(c, RecordUpdateActivity.class);
+                i.putExtra("id", r.id);
+                startActivity(i);
+            }
+        });
+
+        updateStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context c = v.getContext();
+                Intent i = new Intent(c, RecordUpdateStatusActivity.class);
                 i.putExtra("id", r.id);
                 startActivity(i);
             }
