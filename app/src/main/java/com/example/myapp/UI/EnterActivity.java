@@ -16,6 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
@@ -217,25 +222,40 @@ public class EnterActivity extends AppCompatActivity {
         }
 
         if (checkPass) {
-            System.out.println("checking passed");
-            viewModel.addRecord(new Record("0", province, city, district, road, detail, description, tag), new RequestCallBack() {
+            GeocodeSearch search = new GeocodeSearch(this);
+            search.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
                 @Override
-                public void onComplete(boolean isSuccessful) {
-                    Context c = view.getContext();
-                    Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
-                    if (isSuccessful) {
-                        t.setText("创建记录成功");
-                        t.show();
+                public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {}
+
+                @Override
+                public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+                    LatLonPoint point = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint();
+                    double lng = point.getLongitude();
+                    double lat = point.getLatitude();
+                    viewModel.addRecord(new Record("0", province, city, district, road, detail, description, tag, lng, lat, "pending"), new RequestCallBack() {
+                        @Override
+                        public void onComplete(boolean isSuccessful) {
+                            Context c = view.getContext();
+                            Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                            if (isSuccessful) {
+                                t.setText("创建记录成功");
+                                t.show();
 //                        Intent i = new Intent(c, MainActivity.class);
 //                        c.startActivity(i);
-                        finish();
-                    }
-                    else {
-                        t.setText("创建记录失败");
-                        t.show();
-                    }
+                                finish();
+                            }
+                            else {
+                                t.setText("创建记录失败");
+                                t.show();
+                            }
+                        }
+                    });
                 }
             });
+
+            String address = province + city + district + road + detail;
+
+            search.getFromLocationNameAsyn(new GeocodeQuery(address, city));
         }
         else {
             System.out.println(">>> checking fails");
