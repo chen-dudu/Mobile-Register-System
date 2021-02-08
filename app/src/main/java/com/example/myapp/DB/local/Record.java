@@ -55,9 +55,13 @@ public class Record {
     @NonNull
     public String status = "";
 
+    @ColumnInfo(name = "Note")
+    @NonNull
+    public String note = "";
+
     public Record(@NonNull String id, @NonNull String province, @NonNull String city, @NonNull String district,
                   @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag,
-                  double lng, double lat, @NonNull String status) {
+                  double lng, double lat, @NonNull String status, @NonNull String note) {
         this.id = id;
         this.province = province;
         this.city = city;
@@ -69,5 +73,6 @@ public class Record {
         this.lng = lng;
         this.lat = lat;
         this.status = status;
+        this.note = note;
     }
 }

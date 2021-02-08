@@ -232,7 +232,7 @@ public class EnterActivity extends AppCompatActivity {
                     LatLonPoint point = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint();
                     double lng = point.getLongitude();
                     double lat = point.getLatitude();
-                    viewModel.addRecord(new Record("0", province, city, district, road, detail, description, tag, lng, lat, "等待审核"), new RequestCallBack() {
+                    viewModel.addRecord(new Record("0", province, city, district, road, detail, description, tag, lng, lat, "等待审核", ""), new RequestCallBack() {
                         @Override
                         public void onComplete(boolean isSuccessful) {
                             Context c = view.getContext();

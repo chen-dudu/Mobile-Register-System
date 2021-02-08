@@ -159,7 +159,7 @@ public class Manager {
     public void addRecord(Record record, RequestCallBack callBack) {
         RecordCloud temp = new RecordCloud(record.province, record.city, record.district, record.road,
                                             record.detail, record.description, record.tag, record.lng,
-                                            record.lat, record.status);
+                                            record.lat, record.status, record.note);
         temp.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -186,7 +186,7 @@ public class Manager {
                     for (RecordCloud r : bmobQueryResult.getResults()){
                         temp.add(new Record(r.getObjectId(), r.getProvince(), r.getCity(), r.getDistrict(),
                                             r.getRoad(), r.getDetail(), r.getDescription(), r.getTag(),
-                                            r.getLng(), r.getLat(), r.getStatus()));
+                                            r.getLng(), r.getLat(), r.getStatus(), r.getNote()));
                     }
                 }
                 result.postValue(temp);
@@ -212,7 +212,7 @@ public class Manager {
                     for (RecordCloud r : bmobQueryResult.getResults()) {
                         temp.add(new Record(r.getObjectId(), r.getProvince(), r.getCity(), r.getDistrict(),
                                             r.getRoad(), r.getDetail(), r.getDescription(), r.getTag(),
-                                            r.getLng(), r.getLat(), r.getStatus()));
+                                            r.getLng(), r.getLat(), r.getStatus(), r.getNote()));
                     }
                     result.postValue(temp);
                 }
@@ -236,7 +236,7 @@ public class Manager {
                     result.postValue(new Record(recordCloud.getObjectId(), recordCloud.getProvince(),
                             recordCloud.getCity(), recordCloud.getDistrict(), recordCloud.getRoad(),
                             recordCloud.getDetail(), recordCloud.getDescription(), recordCloud.getTag(),
-                            recordCloud.getLng(), recordCloud.getLat(), recordCloud.getStatus()));
+                            recordCloud.getLng(), recordCloud.getLat(), recordCloud.getStatus(), recordCloud.getNote()));
                 }
                 else {
                     result.postValue(null);
@@ -257,7 +257,7 @@ public class Manager {
     public void update(Record record, RequestCallBack callBack) {
         RecordCloud temp = new RecordCloud(record.province, record.city, record.district, record.road,
                                             record.detail, record.description, record.tag, record.lng,
-                                            record.lat, record.status);
+                                            record.lat, record.status, record.note);
         temp.update(record.id, new UpdateListener() {
             @Override
             public void done(BmobException e) {
@@ -275,7 +275,7 @@ public class Manager {
 
     // cloud
     public void deleteRecord(String id, RequestCallBack callBack) {
-        RecordCloud temp = new RecordCloud("", "", "", "", "", "", "", 0d, 0d, "");
+        RecordCloud temp = new RecordCloud("", "", "", "", "", "", "", 0d, 0d, "", "");
         temp.setObjectId(id);
         temp.delete(new UpdateListener() {
             @Override

@@ -14,9 +14,10 @@ public class RecordCloud extends BmobObject {
     private double lng;
     private double lat;
     private String status;
+    private String note;
 
     public RecordCloud(String province, String city, String district, String road,
-                       String detail, String description, String tag, double lng, double lat, String status) {
+                       String detail, String description, String tag, double lng, double lat, String status, String note) {
         this.province = province;
         this.city = city;
         this.district = district;
@@ -27,6 +28,7 @@ public class RecordCloud extends BmobObject {
         this.lng = lng;
         this.lat = lat;
         this.status = status;
+        this.note = note;
     }
 
     public String getProvince() {
@@ -69,6 +71,10 @@ public class RecordCloud extends BmobObject {
         return status;
     }
 
+    public String getNote() {
+        return note;
+    }
+
     public void setProvince(String province) {
         this.province = province;
     }
@@ -107,5 +113,9 @@ public class RecordCloud extends BmobObject {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
