@@ -46,12 +46,10 @@ public class Record {
     public String tag = "";
 
     @ColumnInfo(name = "Lng")
-    @NonNull
-    public String lng = "";
+    public double lng = 0d;
 
     @ColumnInfo(name = "Lat")
-    @NonNull
-    public String lat = "";
+    public double lat = 0d;
 
     @ColumnInfo(name = "Status")
     @NonNull
@@ -59,7 +57,7 @@ public class Record {
 
     public Record(@NonNull String id, @NonNull String province, @NonNull String city, @NonNull String district,
                   @NonNull String road, @NonNull String detail, @NonNull String description, @NonNull String tag,
-                  @NonNull String lng, @NonNull String lat, @NonNull String status) {
+                  double lng, double lat, @NonNull String status) {
         this.id = id;
         this.province = province;
         this.city = city;

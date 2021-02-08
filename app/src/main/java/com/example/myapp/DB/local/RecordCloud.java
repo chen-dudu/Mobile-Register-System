@@ -11,12 +11,12 @@ public class RecordCloud extends BmobObject {
     private String detail;
     private String description;
     private String tag;
-    private String lng;
-    private String lat;
+    private double lng;
+    private double lat;
     private String status;
 
     public RecordCloud(String province, String city, String district, String road,
-                       String detail, String description, String tag, String lng, String lat, String status) {
+                       String detail, String description, String tag, double lng, double lat, String status) {
         this.province = province;
         this.city = city;
         this.district = district;
@@ -57,11 +57,11 @@ public class RecordCloud extends BmobObject {
         return tag;
     }
 
-    public String getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public String getLat() {
+    public double getLat() {
         return lat;
     }
 
@@ -97,11 +97,11 @@ public class RecordCloud extends BmobObject {
         this.tag = tag;
     }
 
-    public void setLng(String lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
