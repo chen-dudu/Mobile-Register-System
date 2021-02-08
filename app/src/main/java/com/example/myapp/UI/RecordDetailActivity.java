@@ -41,14 +41,23 @@ public class RecordDetailActivity extends AppCompatActivity {
         Button back = findViewById(R.id.record_detail_button_home);
         TextView address = findViewById(R.id.record_detail_address);
         TextView des = findViewById(R.id.record_detail_description);
+        TextView status = findViewById(R.id.record_detail_status);
+        TextView note = findViewById(R.id.record_detail_note);
 
         viewModel.getRecord(id).observe(this, new Observer<Record>() {
             @Override
             public void onChanged(Record record) {
                 if (record != null) {
                     String addr = record.province + record.city + record.district + record.road + record.detail;
-                    address.setText(addr);
-                    des.setText(record.description);
+                    address.setText("地址：" + addr);
+                    des.setText("描述：" + record.description);
+                    status.setText("状态：" + record.status);
+                    if (record.note.length() > 0) {
+                        note.setText("审核说明：" + record.note);
+                    }
+                    else {
+                        note.setText("审核说明：无审核说明");
+                    }
                     r = record;
                 }
             }
