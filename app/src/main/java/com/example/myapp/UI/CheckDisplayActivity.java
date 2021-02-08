@@ -44,19 +44,21 @@ public class CheckDisplayActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this, new CheckDisplayViewModelFactory(this.getApplication())).get(CheckDisplayViewModel.class);
 
+        Toast t = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+        t.setText("搜索中...");
+        t.show();
         if (tag == null) {
             viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
                 @Override
                 public void onChanged(List<Record> records) {
                     if (records.size() == 0) {
-                        Context c = getApplication();
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast t = Toast.makeText(c, "未找到结果。", duration);
+                        t.setText("未找到结果。");
                         t.show();
 //                        finish();
                     }
                     else {
                         adapter.setData(records);
+                        t.cancel();
                     }
                 }
             });
