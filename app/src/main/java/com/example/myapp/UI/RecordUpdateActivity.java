@@ -17,6 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.DB.local.Tag;
 import com.example.myapp.R;
@@ -227,21 +232,40 @@ public class RecordUpdateActivity extends AppCompatActivity {
                     r.description = description;
                     r.tag = tag;
 
-                    viewModel.update(r, new RequestCallBack() {
+                    GeocodeSearch search = new GeocodeSearch(v.getContext());
+                    search.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
                         @Override
-                        public void onComplete(boolean isSuccessful) {
-                            Context c = v.getContext();
-                            Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
-                            if (isSuccessful) {
-                                t.setText("记录修改成功");
-                                t.show();
-                            }
-                            else {
-                                t.setText("记录修改失败");
-                                t.show();
-                            }
+                        public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {}
+
+                        @Override
+                        public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+                            LatLonPoint point = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint();
+                            double lat = point.getLatitude();
+                            double lng = point.getLongitude();
+
+                            r.lat = lat;
+                            r.lng = lng;
+
+                            viewModel.update(r, new RequestCallBack() {
+                                @Override
+                                public void onComplete(boolean isSuccessful) {
+                                    Context c = v.getContext();
+                                    Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
+                                    if (isSuccessful) {
+                                        t.setText("记录修改成功");
+                                        finish();
+                                    }
+                                    else {
+                                        t.setText("记录修改失败");
+                                    }
+                                    t.show();
+                                }
+                            });
                         }
                     });
+
+                    String address = province + city + district + road + detail;
+                    search.getFromLocationNameAsyn(new GeocodeQuery(address, city));
                 }
                 else {
                     System.out.println(">>> check failed");
