@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,14 +21,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.R;
 import com.example.myapp.Util.RecordUpdateStatusViewModelFactory;
-import com.example.myapp.Util.RecordUpdateViewModelFactory;
 import com.example.myapp.Util.RequestCallBack;
 import com.example.myapp.ViewModel.RecordUpdateStatusViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +42,8 @@ public class RecordUpdateStatusActivity extends AppCompatActivity {
     private TextInputEditText reason;
     private Button back;
     private Button confirm;
+    private LinearLayout content;
+    private ProgressBar bar;
 
     private Record  r = null;
 
@@ -59,6 +60,8 @@ public class RecordUpdateStatusActivity extends AppCompatActivity {
             @Override
             public void onChanged(Record record) {
                 r = record;
+                content.setVisibility(View.VISIBLE);
+                bar.setVisibility(View.GONE);
             }
         });
 
@@ -68,6 +71,11 @@ public class RecordUpdateStatusActivity extends AppCompatActivity {
         reason = findViewById(R.id.record_update_status_reason);
         back = findViewById(R.id.record_update_status_back);
         confirm = findViewById(R.id.record_update_status_confirm);
+        content = findViewById(R.id.record_update_status_content);
+        bar = findViewById(R.id.progress_bar);
+
+        content.setVisibility(View.GONE);
+        bar.setVisibility(View.VISIBLE);
 
         List<String> optionItems = Arrays.asList("等待审核", "通过", "失败");
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.tag_menu_item, optionItems);
