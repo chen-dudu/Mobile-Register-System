@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,11 @@ public class RecordDetailActivity extends AppCompatActivity {
         TextView des = findViewById(R.id.record_detail_description);
         TextView status = findViewById(R.id.record_detail_status);
         TextView note = findViewById(R.id.record_detail_note);
+        LinearLayout content = findViewById(R.id.record_detail_content);
+        ProgressBar bar = findViewById(R.id.progress_bar);
+
+        content.setVisibility(View.GONE);
+        bar.setVisibility(View.VISIBLE);
 
         viewModel.getRecord(id).observe(this, new Observer<Record>() {
             @Override
@@ -59,6 +66,8 @@ public class RecordDetailActivity extends AppCompatActivity {
                         note.setText("审核说明：无审核说明");
                     }
                     r = record;
+                    content.setVisibility(View.VISIBLE);
+                    bar.setVisibility(View.GONE);
                 }
             }
         });
