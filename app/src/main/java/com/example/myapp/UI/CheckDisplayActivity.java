@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +36,12 @@ public class CheckDisplayActivity extends AppCompatActivity {
     protected RecyclerView rview;
     protected DisplayAdapter adapter;
 
+    private ProgressBar bar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_display);
+        setContentView(R.layout.recycler_view);
 
         Intent i = getIntent();
         String tag = i.getStringExtra("tagName");
@@ -46,8 +49,6 @@ public class CheckDisplayActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this, new CheckDisplayViewModelFactory(this.getApplication())).get(CheckDisplayViewModel.class);
 
         Toast t = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-        t.setText("搜索中...");
-        t.show();
         if (tag == null) {
             viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
                 @Override
@@ -59,8 +60,8 @@ public class CheckDisplayActivity extends AppCompatActivity {
                     }
                     else {
                         adapter.setData(records);
-                        t.cancel();
                     }
+                    bar.setVisibility(View.GONE);
                 }
             });
         }
@@ -69,21 +70,19 @@ public class CheckDisplayActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(List<Record> records) {
                     if (records.size() == 0) {
-                        Context c = getApplication();
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast t = Toast.makeText(c, "未找到结果。", duration);
+                        t.setText("未找到结果。");
                         t.show();
 //                        finish();
                     }
                     else {
                         adapter.setData(records);
-                        t.cancel();
                     }
+                    bar.setVisibility(View.GONE);
                 }
             });
         }
 
-        rview = findViewById(R.id.record_display_recyclerview);
+        rview = findViewById(R.id.recyclerview);
         rview.setHasFixedSize(true);
 
         manager = new LinearLayoutManager(this);
@@ -94,6 +93,9 @@ public class CheckDisplayActivity extends AppCompatActivity {
 
         DividerItemDecoration divider = new DividerItemDecoration(rview.getContext(), manager.getOrientation());
         rview.addItemDecoration(divider);
+
+        bar = findViewById(R.id.progress_bar);
+        bar.setVisibility(View.VISIBLE);
     }
 
     public static class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {

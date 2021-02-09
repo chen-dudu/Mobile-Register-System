@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,32 +35,32 @@ public class TagsActivity extends AppCompatActivity {
 
     private TagsViewModel viewModel;
 
+    private ProgressBar bar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tags);
+        setContentView(R.layout.recycler_view);
 
         viewModel = new ViewModelProvider(this, new TagsViewModelFactory(this.getApplication())).get(TagsViewModel.class);
         viewModel.getAllTags().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(List<Tag> tags) {
-                Context c = getApplication();
-                Toast t = Toast.makeText(c, "", Toast.LENGTH_SHORT);
-                t.setText("正在搜索...");
-                t.show();
                 if (tags != null) {
                     // request result comes back when tags is not null
                     if (tags.size() == 0) {
+                        Toast t = Toast.makeText(getApplication(), "", Toast.LENGTH_SHORT);
                         t.setText("未找到结果。");
+                        t.show();
                     } else {
-                        t.cancel();
                         adapter.setData(tags);
                     }
+                    bar.setVisibility(View.GONE);
                 }
             }
         });
 
-        rview = findViewById(R.id.tags_recyclerview);
+        rview = findViewById(R.id.recyclerview);
         rview.setHasFixedSize(true);
 
         manager = new LinearLayoutManager(this);
@@ -70,6 +71,9 @@ public class TagsActivity extends AppCompatActivity {
 
         DividerItemDecoration divider = new DividerItemDecoration(rview.getContext(), manager.getOrientation());
         rview.addItemDecoration(divider);
+
+        bar = findViewById(R.id.progress_bar);
+        bar.setVisibility(View.VISIBLE);
     }
 
 
