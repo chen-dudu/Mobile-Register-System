@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.myapp.R;
 
+import org.apache.http.message.HeaderValueParser;
+
 import cn.bmob.v3.Bmob;
 
 public class MainActivity extends AppCompatActivity {
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Context c = view.getContext();
         Intent i = new Intent(c, EnterActivity.class);
         c.startActivity(i);
+//        startActivityForResult(i, 1);
     }
 
     public void onClickCheck(View view) {
@@ -103,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
     public void onClickTags(View view) {
         Context c = view.getContext();
         Intent i = new Intent(c, TagsActivity.class);
+        c.startActivity(i);
+    }
+
+    public void onClickHeatMap(View view) {
+        Context c = view.getContext();
+        Intent i = new Intent(c, HeatMapActivity.class);
         c.startActivity(i);
     }
 
