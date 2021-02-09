@@ -3,6 +3,7 @@ package com.example.myapp.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Script;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -66,6 +70,11 @@ public class RecordUpdateActivity extends AppCompatActivity {
         AutoCompleteTextView tagText = findViewById(R.id.update_record_tag_list_drop_down);
         Button confirm = findViewById(R.id.update_record_confirm_button);
         Button back = findViewById(R.id.update_record_back_button);
+        ScrollView content = findViewById(R.id.update_record_content);
+        ProgressBar bar = findViewById(R.id.progress_bar);
+
+        content.setVisibility(View.GONE);
+        bar.setVisibility(View.VISIBLE);
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.tag_menu_item, optionItem);
         tagText.setAdapter(adapter);
@@ -81,6 +90,8 @@ public class RecordUpdateActivity extends AppCompatActivity {
                 descriptionText.setText(record.description);
                 tagText.setText(record.tag, false);
                 r = record;
+                content.setVisibility(View.VISIBLE);
+                bar.setVisibility(View.GONE);
             }
         });
 

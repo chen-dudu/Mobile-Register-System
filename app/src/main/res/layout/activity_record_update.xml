@@ -1,234 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context=".UI.RecordUpdateActivity" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_marginTop="30dp">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/title"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="修改需要修改的项"-->
-<!--                android:textSize="30sp"-->
-<!--                android:textAlignment="center"-->
-<!--                android:layout_weight="1"/>-->
-<!--        </LinearLayout>-->
+        android:layout_height="match_parent"
+        android:id="@+id/update_record_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp"
-            >
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_province_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:orientation="horizontal"-->
+            <!--            android:layout_marginTop="30dp">-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/title"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="修改需要修改的项"-->
+            <!--                android:textSize="30sp"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:layout_weight="1"/>-->
+            <!--        </LinearLayout>-->
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_province"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_province_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="省份" />
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:errorEnabled="true">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="省份" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_city_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_city_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="城市" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_district_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_district"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="城区" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_road_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_road"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="道路" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_detail_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="具体位置" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_description_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="2"
+                    app:endIconMode="clear_text"
+                    app:helperText="必填"
+                    app:counterEnabled="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/update_record_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="描述"
+                        android:minLines="4"
+                        android:gravity="top"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/update_record_tags_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toTopOf="@id/buttons"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    app:helperText="必填"
+                    app:errorEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/update_record_tag_list_drop_down"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:hint="标签"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttons"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_city"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="城市" />
+                    android:layout_weight="1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_district_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_district"
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/update_record_back_button"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="城区" />
+                    android:text="返回"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_road_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_road"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="道路" />
+                    android:layout_weight="1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_detail_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_detail"
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/update_record_confirm_button"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="具体位置" />
+                    android:text="确认"
+                    android:textSize="20sp"
+                    android:layout_weight="0.5"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_description_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="2"
-                app:endIconMode="clear_text"
-                app:helperText="必填"
-                app:counterEnabled="true"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_record_description"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="描述"
-                    android:minLines="4"
-                    android:gravity="top"/>
+                    android:layout_weight="1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/update_record_tags_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:layout_constraintBottom_toTopOf="@id/buttons"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                app:helperText="必填"
-                app:errorEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-                <AutoCompleteTextView
-                    android:id="@+id/update_record_tag_list_drop_down"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:hint="标签"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+    <include
+        layout="@layout/progress_bar" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/update_record_back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="返回"
-                android:textSize="20sp"
-                android:layout_weight="0.5"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/update_record_confirm_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="确认"
-                android:textSize="20sp"
-                android:layout_weight="0.5"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>
