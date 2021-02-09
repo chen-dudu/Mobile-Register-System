@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,11 @@ public class TagDetailActivity extends AppCompatActivity {
 
         TextView name = findViewById(R.id.tag_detail_name);
         TextView description = findViewById(R.id.tag_detail_description);
+        LinearLayout content = findViewById(R.id.tag_detail_content);
+        ProgressBar bar = findViewById(R.id.progress_bar);
+
+        content.setVisibility(View.GONE);
+        bar.setVisibility(View.VISIBLE);
 
         viewModel = new ViewModelProvider(this, new TagDetailViewModelFactory(this.getApplication())).get(TagDetailViewModel.class);
         viewModel.getTag(selectedTag).observe(this, new Observer<Tag>() {
@@ -47,6 +54,8 @@ public class TagDetailActivity extends AppCompatActivity {
                     else {
                         description.setText(tag.description);
                     }
+                    content.setVisibility(View.VISIBLE);
+                    bar.setVisibility(View.GONE);
                 }
             }
         });
