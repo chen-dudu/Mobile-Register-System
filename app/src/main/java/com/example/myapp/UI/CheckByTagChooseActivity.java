@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +41,11 @@ public class CheckByTagChooseActivity extends AppCompatActivity {
 
         AutoCompleteTextView chosenTag = findViewById(R.id.check_by_tag_menu);
         TextInputLayout layout = findViewById(R.id.check_by_tag_menu_layout);
+        LinearLayout content = findViewById(R.id.check_by_tag_content);
+        ProgressBar bar = findViewById(R.id.progress_bar);
+
+        content.setVisibility(View.GONE);
+        bar.setVisibility(View.VISIBLE);
 
         viewModel = new ViewModelProvider(this, new CheckByTagChooseViewModelFactory(this.getApplication())).get(CheckByTagChooseViewModel.class);
 
@@ -53,6 +60,8 @@ public class CheckByTagChooseActivity extends AppCompatActivity {
                     optionItems.add(tags.get(i).name);
                 }
                 adapter.notifyDataSetChanged();
+                content.setVisibility(View.VISIBLE);
+                bar.setVisibility(View.GONE);
             }
         });
 
