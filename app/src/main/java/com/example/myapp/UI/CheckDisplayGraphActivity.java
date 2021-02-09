@@ -12,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.LatLng;
-import com.amap.api.maps2d.model.Marker;
-import com.amap.api.maps2d.model.MarkerOptions;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.example.myapp.DB.local.Record;
 import com.example.myapp.R;
 import com.example.myapp.Util.CheckDisplayGraphViewModelFactory;
@@ -52,23 +52,23 @@ public class CheckDisplayGraphActivity extends AppCompatActivity {
         }
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LAT, LNG), 13));
 
-        map.setOnMapClickListener(new AMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                if (currMarker != null) {
-                    // click other place to hide info window of selected marker
-                    currMarker.hideInfoWindow();
-                }
-            }
-        });
-        map.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                // capture the currently selected marker
-                currMarker = marker;
-                return false;
-            }
-        });
+//        map.setOnMapClickListener(new AMap.OnMapClickListener() {
+//            @Override
+//            public void onMapClick(LatLng latLng) {
+//                if (currMarker != null) {
+//                    // click other place to hide info window of selected marker
+//                    currMarker.hideInfoWindow();
+//                }
+//            }
+//        });
+//        map.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
+//            @Override
+//            public boolean onMarkerClick(Marker marker) {
+//                // capture the currently selected marker
+//                currMarker = marker;
+//                return false;
+//            }
+//        });
 
         viewModel = new ViewModelProvider(this,new CheckDisplayGraphViewModelFactory(this.getApplication())).get(CheckDisplayGraphViewModel.class);
 
