@@ -39,7 +39,7 @@ public class CheckDisplayGraphActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_display_graph);
+        setContentView(R.layout.map_view);
 
         view = findViewById(R.id.map);
         view.onCreate(savedInstanceState);
