@@ -1,6 +1,9 @@
 package com.example.myapp.UI;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -69,13 +72,12 @@ public class CheckDisplayGraphActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this,new CheckDisplayGraphViewModelFactory(this.getApplication())).get(CheckDisplayGraphViewModel.class);
 
-        Toast t = Toast.makeText(this, "", Toast.LENGTH_LONG);
-        t.setText("正在获取数据...");
-        t.show();
+        ProgressBar bar = findViewById(R.id.progress_bar);
+        bar.setVisibility(View.VISIBLE);
+
         viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(List<Record> records) {
-                t.cancel();
                 for (int i = 0; i < records.size(); i++) {
                     Record r = records.get(i);
                     LatLng location = new LatLng(r.lat, r.lng);
@@ -99,6 +101,7 @@ public class CheckDisplayGraphActivity extends AppCompatActivity {
                     }
                     map.addMarker(option);
                 }
+                bar.setVisibility(View.GONE);
             }
         });
     }
