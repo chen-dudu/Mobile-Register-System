@@ -21,7 +21,7 @@ public class CheckActivity extends AppCompatActivity {
         Button all = findViewById(R.id.check_record_all_button);
         Button allGraph = findViewById(R.id.check_record_all_graph_button);
         Button tag = findViewById(R.id.check_record_by_tag_button);
-        Button tagGraph = findViewById(R.id.check_record_by_tag_graph_button);
+//        Button tagGraph = findViewById(R.id.check_record_by_tag_graph_button);
         Button back = findViewById(R.id.check_record_back_button);
 
         all.setOnClickListener(new View.OnClickListener() {
