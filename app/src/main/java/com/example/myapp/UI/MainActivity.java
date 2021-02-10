@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Button checkRecord = findViewById(R.id.main_check_record_button);
         Button createTag = findViewById(R.id.main_create_tag_button);
         Button checkTag = findViewById(R.id.main_check_tag_button);
+        Button heatMap = findViewById(R.id.main_heat_map_button);
         ConnectivityManager cm = getSystemService(ConnectivityManager.class);
         NetworkInfo info = cm.getActiveNetworkInfo();
         if (info != null && info.isConnected()) {
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             checkRecord.setEnabled(false);
             createTag.setEnabled(false);
             checkTag.setEnabled(false);
+            heatMap.setEnabled(false);
             Toast t = Toast.makeText(this, "", Toast.LENGTH_LONG);
             t.setText("设备未联网，请联网后重新打开");
             t.show();
